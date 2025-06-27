@@ -11,6 +11,3 @@ class ProductCreate(BaseModel):
 
 class ProductShow(ProductCreate):
     id: int
-
-    class Config:
-        from_attributes = True

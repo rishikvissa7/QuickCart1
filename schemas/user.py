@@ -10,9 +10,6 @@ class UserShow(BaseModel):
     username: str
     role: str
 
-    class Config:
-        from_attributes = True
-
 class Token(BaseModel):
     access_token: str
     token_type: str

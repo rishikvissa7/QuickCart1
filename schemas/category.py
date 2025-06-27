@@ -7,6 +7,3 @@ class CategoryCreate(BaseModel):
 
 class CategoryShow(CategoryCreate):
     id: int
-
-    class Config:
-        from_attributes = True
