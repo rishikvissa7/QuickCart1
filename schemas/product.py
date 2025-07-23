@@ -7,7 +7,6 @@ class ProductCreate(BaseModel):
     price: float
     stock: int
     category_id: int
-    delete_check: bool
 
 class ProductShow(ProductCreate):
     id: int

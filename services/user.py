@@ -4,6 +4,7 @@ from models.user import User
 from schemas.user import UserCreate
 from services.auth import hash_password
 
+# User service functions for managing users in the e-commerce application
 def register_user(user: UserCreate, db: Session):
     if db.query(User).filter(User.username == user.username).first():
         raise HTTPException(status_code=400, detail="Username already exists")
@@ -23,15 +24,21 @@ def register_user(user: UserCreate, db: Session):
     db.refresh(new_user)
     return new_user
 
+
+# List all users
 def list_users(db: Session):
     return db.query(User).all()
 
+
+# Get a specific user by ID
 def get_user_by_id(user_id: int, db: Session):
     user = db.query(User).filter(User.id == user_id).first()
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     return user
 
+
+# Update a specific user by ID
 def update_user(user_id: int, user_update: UserCreate, db: Session):
     db_user = db.query(User).filter(User.id == user_id).first()
     if not db_user:
@@ -43,6 +50,8 @@ def update_user(user_id: int, user_update: UserCreate, db: Session):
     db.refresh(db_user)
     return db_user
 
+
+# Delete a specific user by ID
 def delete_user(user_id: int, db: Session):
     user = db.query(User).filter(User.id == user_id).first()
     if not user:
